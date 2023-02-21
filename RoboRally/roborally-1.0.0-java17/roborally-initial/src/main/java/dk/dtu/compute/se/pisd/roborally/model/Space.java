@@ -72,4 +72,16 @@ public class Space extends Subject {
         notifyChange();
     }
 
+    /**
+     *
+     * @return true if no player is on the space
+     */
+    public boolean isEmpty() {
+        if(this.player != null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }
