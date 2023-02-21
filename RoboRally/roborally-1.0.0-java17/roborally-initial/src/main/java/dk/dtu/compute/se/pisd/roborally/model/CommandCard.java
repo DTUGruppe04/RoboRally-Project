@@ -38,6 +38,11 @@ public class CommandCard extends Subject {
         this.command = command;
     }
 
+    /**
+     * Public getter method. Returns command display name type string.
+     *
+     * @return command display name
+     */
     public String getName() {
         return command.displayName;
     }

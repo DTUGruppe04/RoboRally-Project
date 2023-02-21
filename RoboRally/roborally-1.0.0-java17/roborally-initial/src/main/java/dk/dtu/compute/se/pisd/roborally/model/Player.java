@@ -48,6 +48,13 @@ public class Player extends Subject {
     private CommandCardField[] program;
     private CommandCardField[] cards;
 
+    /**
+     * Default constructor
+     *
+     * @param board Board Instance
+     * @param color Color of the player
+     * @param name Name of the player
+     */
     public Player(@NotNull Board board, String color, @NotNull String name) {
         this.board = board;
         this.name = name;
@@ -66,10 +73,20 @@ public class Player extends Subject {
         }
     }
 
+    /**
+     * Public getter method. Returns the name of the player
+     *
+     * @return player name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Public setter method. Sets the name of the player
+     *
+     * @param name name for the player
+     */
     public void setName(String name) {
         if (name != null && !name.equals(this.name)) {
             this.name = name;
@@ -80,10 +97,20 @@ public class Player extends Subject {
         }
     }
 
+    /**
+     * Public getter method. Return the color of a player
+     *
+     * @return color of a player
+     */
     public String getColor() {
         return color;
     }
 
+    /**
+     * Public setter method. Sets the color of a player
+     *
+     * @param color player for the player
+     */
     public void setColor(String color) {
         this.color = color;
         notifyChange();
@@ -92,14 +119,24 @@ public class Player extends Subject {
         }
     }
 
+    /**
+     * Public getter method. Gets the space the player's robot stands on
+     *
+     * @return the space the player's robot stands on
+     */
+
     public Space getSpace() {
         return space;
     }
 
+    /**
+     * Public setter method. Sets the new space for the player's robot on the board
+     *
+     * @param space the new space for the player's robot.
+     */
     public void setSpace(Space space) {
         Space oldSpace = this.space;
-        if (space != oldSpace &&
-                (space == null || space.board == this.board)) {
+        if (space != oldSpace && (space == null || space.board == this.board)) {
             this.space = space;
             if (oldSpace != null) {
                 oldSpace.setPlayer(null);
@@ -111,10 +148,20 @@ public class Player extends Subject {
         }
     }
 
+    /**
+     * Public getter method. Returns the heading of the player
+     *
+     * @return heading of the player
+     */
     public Heading getHeading() {
         return heading;
     }
 
+    /**
+     * Public setter method. Sets the heading of the player
+     *
+     * @param heading the heading of the player
+     */
     public void setHeading(@NotNull Heading heading) {
         if (heading != this.heading) {
             this.heading = heading;
@@ -125,10 +172,24 @@ public class Player extends Subject {
         }
     }
 
+    /**
+     * Public getter method. Returns the CommandCardField on a specific index in the Array.
+     *
+     * @param i index in the array
+     *
+     * @return a CommandCardField from the specified index
+     */
     public CommandCardField getProgramField(int i) {
         return program[i];
     }
 
+    /**
+     * Public getter method. Returns the CardField ona specific index in the Array.
+     *
+     * @param i index in the array
+     *
+     * @return a CardField from the specified index
+     */
     public CommandCardField getCardField(int i) {
         return cards[i];
     }

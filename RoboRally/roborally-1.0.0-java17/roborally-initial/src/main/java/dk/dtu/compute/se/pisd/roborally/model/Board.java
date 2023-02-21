@@ -57,6 +57,13 @@ public class Board extends Subject {
 
     private boolean stepMode;
 
+    /**
+     * Constructor.
+     *
+     * @param width width of the gameboard
+     * @param height height of the gameboard
+     * @param boardName The board name
+     */
     public Board(int width, int height, @NotNull String boardName) {
         this.boardName = boardName;
         this.width = width;
@@ -71,14 +78,30 @@ public class Board extends Subject {
         this.stepMode = false;
     }
 
+    /**
+     * Default constructor.
+     *
+     * @param width width of the gameboard
+     * @param height height of the gameboard
+     */
     public Board(int width, int height) {
         this(width, height, "defaultboard");
     }
 
+    /**
+     * A public getter method
+     *
+     * @return Returns the gameID for the board
+     */
     public Integer getGameId() {
         return gameId;
     }
 
+    /**
+     * A public setter method for gameID. It will throw an exception, if you set the gameID to an already existing gameID.
+     *
+     * @param gameId Set the gameID for the board.
+     */
     public void setGameId(int gameId) {
         if (this.gameId == null) {
             this.gameId = gameId;
@@ -89,19 +112,36 @@ public class Board extends Subject {
         }
     }
 
+    /**
+     * A public getting method. Returns the available space on the board. Returns null, if there is no space available.
+     *
+     * @param x width
+     * @param y height
+     *
+     * @return Returns the available space. Returns null if no space available
+     */
     public Space getSpace(int x, int y) {
-        if (x >= 0 && x < width &&
-                y >= 0 && y < height) {
+        if (x >= 0 && x < width && y >= 0 && y < height) {
             return spaces[x][y];
         } else {
             return null;
         }
     }
 
+    /**
+     * Public getter method.
+     *
+     * @return the size of the player arraylist
+     */
     public int getPlayersNumber() {
         return players.size();
     }
 
+    /**
+     * Adds a player to the arraylist
+     *
+     * @param player The player to be added
+     */
     public void addPlayer(@NotNull Player player) {
         if (player.board == this && !players.contains(player)) {
             players.add(player);
@@ -109,6 +149,12 @@ public class Board extends Subject {
         }
     }
 
+    /**
+     * Public getter method. Returns a specific player instance from the ArrayList
+     *
+     * @param i index of the player to get
+     * @return the player in index i
+     */
     public Player getPlayer(int i) {
         if (i >= 0 && i < players.size()) {
             return players.get(i);
@@ -117,10 +163,20 @@ public class Board extends Subject {
         }
     }
 
+    /**
+     * Public getter method. Returns the current player turn.
+     *
+     * @return current player turn
+     */
     public Player getCurrentPlayer() {
         return current;
     }
 
+    /**
+     * Public setter method. Sets the current player to be the player who is input
+     *
+     * @param player player to have its turn
+     */
     public void setCurrentPlayer(Player player) {
         if (player != this.current && players.contains(player)) {
             this.current = player;
@@ -128,10 +184,20 @@ public class Board extends Subject {
         }
     }
 
+    /**
+     * Public getter method.
+     *
+     * @return the phase the game is currently in
+     */
     public Phase getPhase() {
         return phase;
     }
 
+    /**
+     * Public setter method. Sets the phase to the input
+     *
+     * @param phase phase to become
+     */
     public void setPhase(Phase phase) {
         if (phase != this.phase) {
             this.phase = phase;
@@ -139,10 +205,20 @@ public class Board extends Subject {
         }
     }
 
+    /**
+     * Public getter method. Returns the amount of steps
+     *
+     * @return steps
+     */
     public int getStep() {
         return step;
     }
 
+    /**
+     * Public setter method. Sets a specific value for steps
+     *
+     * @param step specific int
+     */
     public void setStep(int step) {
         if (step != this.step) {
             this.step = step;
@@ -150,10 +226,20 @@ public class Board extends Subject {
         }
     }
 
+    /**
+     * Boolean method. Checks if Step Mode is active or not.
+     *
+     * @return true for active and false for inactive
+     */
     public boolean isStepMode() {
         return stepMode;
     }
 
+    /**
+     * Public setter method. Activate stepMode or Deactivate stepmode.
+     *
+     * @param stepMode boolean
+     */
     public void setStepMode(boolean stepMode) {
         if (stepMode != this.stepMode) {
             this.stepMode = stepMode;
@@ -161,6 +247,12 @@ public class Board extends Subject {
         }
     }
 
+    /**
+     * Public getter method. Return the index of a player in the player ArrayList. If a player does not exist in the ArrayList, the method will return -1
+     *
+     * @param player The player instance
+     * @return Index of player
+     */
     public int getPlayerNumber(@NotNull Player player) {
         if (player.board == this) {
             return players.indexOf(player);
