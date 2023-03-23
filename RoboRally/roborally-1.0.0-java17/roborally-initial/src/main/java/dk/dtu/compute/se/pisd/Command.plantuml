@@ -1,0 +1,70 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class AppController
+class Board
+class BoardView
+class CardFieldView
+enum Command << enumeration >>
+class CommandCard
+class CommandCardField
+class GameController
+enum Heading << enumeration >>
+enum Phase << enumeration >>
+class Player
+class PlayerView
+class PlayersView
+class RoboRally
+class RoboRallyMenuBar
+class Space
+class SpaceView
+interface ViewObserver << interface >>
+
+AppController     -[#595959,dashed]->  Board            : "«create»"
+AppController    "1" *-[#595959,plain]-> "gameController\n1" GameController   
+AppController     -[#595959,dashed]->  GameController   : "«create»"
+AppController     -[#595959,dashed]->  Player           : "«create»"
+AppController    "1" *-[#595959,plain]-> "roboRally\n1" RoboRally        
+Board            "1" *-[#595959,plain]-> "phase\n1" Phase            
+Board            "1" *-[#595959,plain]-> "players\n*" Player           
+Board            "1" *-[#595959,plain]-> "spaces\n*" Space            
+Board             -[#595959,dashed]->  Space            : "«create»"
+BoardView        "1" *-[#595959,plain]-> "board\n1" Board            
+BoardView        "1" *-[#595959,plain]-> "playersView\n1" PlayersView      
+BoardView         -[#595959,dashed]->  PlayersView      : "«create»"
+BoardView         -[#595959,dashed]->  SpaceView        : "«create»"
+BoardView        "1" *-[#595959,plain]-> "spaces\n*" SpaceView        
+BoardView         -[#008200,dashed]-^  ViewObserver     
+CardFieldView    "1" *-[#595959,plain]-> "field\n1" CommandCardField 
+CardFieldView    "1" *-[#595959,plain]-> "gameController\n1" GameController   
+CardFieldView     -[#008200,dashed]-^  ViewObserver     
+CommandCard      "1" *-[#595959,plain]-> "command\n1" Command          
+CommandCardField "1" *-[#595959,plain]-> "card\n1" CommandCard      
+CommandCardField "1" *-[#595959,plain]-> "player\n1" Player           
+GameController   "1" *-[#595959,plain]-> "board\n1" Board            
+Player           "1" *-[#595959,plain]-> "board\n1" Board            
+Player            -[#595959,dashed]->  CommandCardField : "«create»"
+Player           "1" *-[#595959,plain]-> "program\n*" CommandCardField 
+Player           "1" *-[#595959,plain]-> "heading\n1" Heading          
+Player           "1" *-[#595959,plain]-> "space\n1" Space            
+PlayerView       "1" *-[#595959,plain]-> "programCardViews\n*" CardFieldView    
+PlayerView        -[#595959,dashed]->  CardFieldView    : "«create»"
+PlayerView       "1" *-[#595959,plain]-> "gameController\n1" GameController   
+PlayerView       "1" *-[#595959,plain]-> "player\n1" Player           
+PlayerView        -[#008200,dashed]-^  ViewObserver     
+PlayersView      "1" *-[#595959,plain]-> "board\n1" Board            
+PlayersView       -[#595959,dashed]->  PlayerView       : "«create»"
+PlayersView      "1" *-[#595959,plain]-> "playerViews\n*" PlayerView       
+PlayersView       -[#008200,dashed]-^  ViewObserver     
+RoboRally         -[#595959,dashed]->  AppController    : "«create»"
+RoboRally         -[#595959,dashed]->  BoardView        : "«create»"
+RoboRally         -[#595959,dashed]->  RoboRallyMenuBar : "«create»"
+RoboRallyMenuBar "1" *-[#595959,plain]-> "appController\n1" AppController    
+Space            "1" *-[#595959,plain]-> "board\n1" Board            
+Space            "1" *-[#595959,plain]-> "player\n1" Player           
+SpaceView        "1" *-[#595959,plain]-> "space\n1" Space            
+SpaceView         -[#008200,dashed]-^  ViewObserver     
+@enduml

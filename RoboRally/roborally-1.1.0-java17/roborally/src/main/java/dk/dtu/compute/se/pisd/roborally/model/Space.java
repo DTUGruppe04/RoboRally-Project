@@ -30,9 +30,12 @@ import dk.dtu.compute.se.pisd.designpatterns.observer.Subject;
  *
  */
 public class Space extends Subject {
+
     public final Board board;
+
     public final int x;
     public final int y;
+
     private Player player;
 
     public Space(Board board, int x, int y) {
@@ -46,11 +49,6 @@ public class Space extends Subject {
         return player;
     }
 
-    /**
-     * Public setter method. Sets a player to a specific space
-     *
-     * @param player
-     */
     public void setPlayer(Player player) {
         Player oldPlayer = this.player;
         if (player != oldPlayer &&
@@ -72,18 +70,6 @@ public class Space extends Subject {
         // also need to update when some player attributes change, the player can
         // notify the space of these changes by calling this method.
         notifyChange();
-    }
-
-    /**
-     *
-     * @return true if no player is on the space
-     */
-    public boolean isEmpty() {
-        if(this.player != null) {
-            return false;
-        } else {
-            return true;
-        }
     }
 
 }
